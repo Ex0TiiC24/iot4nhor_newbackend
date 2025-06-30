@@ -1,7 +1,17 @@
 import { Elysia } from "elysia";
-
-const app = new Elysia().get("/", () => "Hello Elysia").listen(3000);
-
+import { swagger } from "@elysiajs/swagger"
+import { connectDB } from "./utils/database"
+const app = new Elysia()
+.use(swagger())
+.listen(3000);
 console.log(
   `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
 );
+console.log("connecting to the database...")
+try {
+  await connectDB(50,10)
+  console.log("Database Connected")
+}
+catch(e) {
+  console.error(e)
+}
