@@ -30,13 +30,13 @@ export const connectDB = async (retries:number,delay:number) => {
 
 export const query = async (state:string[],params?:any[]) =>{
   try{
-    return await db(state,...(params ?? []))
+    return await db(state,...params ?? []);
   }
   catch(e:any){
     if (e.message.includes("disconnected") || e.code === "ECONNRESET") {
       console.error("DB disconnected while querying, trying to reconnect");
       await connectDB(5, 2000); 
-      return await db(state,...(params ?? [])); 
+      return await db(state,...params ?? []); 
   }
   throw e;
   }
