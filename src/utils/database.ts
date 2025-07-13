@@ -22,13 +22,13 @@ export const connectDB = async (retries:number,delay:number) => {
         //stop loop of expo amount of delay time
       }
        else {
-        throw new Error("Could not connect to DB after multiple");
+        throw new Error("could not connect to the DB after multiple");
       }
     }
   }
 }
 
-export const query = async (state:string[],params?:any[]) =>{
+export const query = async (state:TemplateStringsArray,params?:any[]) =>{
   try{
     return await db(state,...params ?? []);
   }

@@ -1,6 +1,7 @@
 import { query } from "../../utils/database"
 
 export const queryAllSeat = async () =>{
-    
-    return await query([`SELECT * FROM "floor2SIT"`])
+    const result = await query`SELECT * FROM "floor2SIT"
+ORDER BY id DESC LIMIT 10;`
+    return result
 }
