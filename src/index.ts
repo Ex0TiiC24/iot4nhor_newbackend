@@ -4,7 +4,9 @@ import { connectDB } from "./utils/database"
 import { seatController } from "./features/seat/seatController";
 
 const app = new Elysia()
-.use(swagger())
+.use(swagger({
+  path:"/api"
+}))
 .use(seatController)
 .get("/","Hello im alive")
 .listen(3000)
